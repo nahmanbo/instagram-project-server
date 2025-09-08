@@ -3,12 +3,12 @@ import  writeItemToFile  from "../dal/writeToFile.js";
 import  updateItemById  from "../dal/updateInFile.js";
 import deleteItemById  from "../dal/deleteFromFile.js";
 
-const filePath = "../lib/posts.json";
+const fileName = "posts.json";
 
 // GET /posts - Get all posts
 export async function getAllPosts(req, res) {
   try {
-    const posts = await readItemsFromFile(filePath);
+    const posts = await readItemsFromFile(fileName);
     res.status(200).res.json(posts);
   } catch (err) {
     res.status(500).json({ error: "Failed to read data" });
@@ -20,7 +20,7 @@ export async function getPostById(req, res) {
   const id = req.params.id;
   
   try {
-    const filtered = await readItemsFromFile(filePath, { id });
+    const filtered = await readItemsFromFile(fileName, { id });
     res.status(200).res.json(filtered);
   } catch (err) {
         res.status(500).json({ error: "Failed to read data" });
@@ -32,7 +32,7 @@ export async function addPost(req, res) {
   const newPost = req.body;
   
   try {
-    const result = await writeItemToFile(filePath, newPost);
+    const result = await writeItemToFile(fileName, newPost);
     if (!result.success) throw new Error(result.error);
         res.status(201).json(result.data);
   } catch (err) {
@@ -46,7 +46,7 @@ export async function updatePost(req, res) {
   const newPost = req.body;
 
   try {
-    const result = await updateItemById(filePath, id, newPost);
+    const result = await updateItemById(fileName, id, newPost);
     if (!result.success) throw new Error(result.error);
         res.status(200).res.json(result.updated);
   } catch (err) {
@@ -59,7 +59,7 @@ export async function deletePost(req, res) {
   const id = Number(req.params.id);
 
   try {
-    const result = await deleteItemById(filePath, id);
+    const result = await deleteItemById(fileName, id);
     if (!result.success) throw new Error(result.error);
         res.json(result.updatedList);
   } catch (err) {

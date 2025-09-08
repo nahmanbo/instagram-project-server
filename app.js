@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import writeItemToFile from "./dal/writeToFile.js";
 
+import postRouter from "./routes/postsRouter.js"
 import { logger } from "./utils/loggerHelper.js";
 
 const PORT = 1212;
@@ -14,16 +14,8 @@ app.use(logger);
 
 
 // Routes
-app.post('/', async (req, res) => {
-    const newRiddle = req.body;
-    try {
-      const result = await writeItemToFile("./lib/posts.json", newRiddle);
-      if (!result.success) throw new Error(result.error);
-      res.status(201).json(result.data);
-    } catch (err) {
-      res.status(500).json({ error: "Failed to save data" });
-    }
-  })
+app.use("/api/posts", postRouter);
+
 
 // Start Server
 app.listen(PORT, () => {

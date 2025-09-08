@@ -18,8 +18,6 @@ export async function getAllPosts(req, res) {
 // GET /posts/id/:id - Get posts by id
 export async function getPostById(req, res) {
   const id = Number(req.params.id);
-  console.log("id2 ", id)
-
 
   try {
     const filtered = await readItemsFromFile(fileName, id);
@@ -57,7 +55,6 @@ export async function updatePost(req, res) {
 // DELETE /posts/:id - Delete post by id
 export async function deletePost(req, res) {
   const id = Number(req.params.id);
-  console.log("id3 ", id)
 
   try {
     const result = await deleteItemById(fileName, id);

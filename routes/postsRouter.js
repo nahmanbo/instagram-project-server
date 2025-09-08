@@ -13,7 +13,7 @@ const router = Router();
 router.get("/", getAllPosts);
 
 // Get posts by ID 
-router.get("/id/:id", getPostById);
+router.get("/:id", getPostById);
 
 // Add new posts 
 router.post("/", addPost);

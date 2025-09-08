@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 // Write new item and write to file
-export async function writeItemToFile(filePath, newItem) {
+export default async function writeItemToFile(filePath, newItem) {
   try {
     const data = await readFile(filePath, "utf8");
     const arr = JSON.parse(data);

@@ -1,8 +1,7 @@
-
 import { readFile } from "node:fs/promises";
 
 // Read all items from file (with optional filter)
-export async function readItemsFromFile(filePath, filterObj = null) {
+export default async function readItemsFromFile(filePath, filterObj = null) {
   try {
     const fileData = await readFile(filePath, "utf8");
     const arr = JSON.parse(fileData);

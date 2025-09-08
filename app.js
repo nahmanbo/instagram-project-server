@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import {writeItemToFile} from "./dal/writeToFile.js";
+import writeItemToFile from "./dal/writeToFile.js";
 
 import { logger } from "./utils/loggerHelper.js";
 

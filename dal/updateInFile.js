@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 // Update item by ID
-export async function updateItemById(filePath, idFromParams, newObj) {
+export default async function updateItemById(filePath, idFromParams, newObj) {
   try {
     if (idFromParams !== newObj.id) {
       return { success: false, error: "ID mismatch" };

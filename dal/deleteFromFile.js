@@ -1,8 +1,7 @@
-
 import { readFile, writeFile } from "node:fs/promises";
 
 // Delete item by ID
-export async function deleteItemById(filePath, id) {
+export default async function deleteItemById(filePath, id) {
   try {
     const fileData = await readFile(filePath, "utf8");
     const arr = JSON.parse(fileData);

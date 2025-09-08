@@ -9,7 +9,7 @@ const filePath = "../lib/posts.json";
 export async function getAllPosts(req, res) {
   try {
     const posts = await readItemsFromFile(filePath);
-    res.json(posts);
+    res.status(200).res.json(posts);
   } catch (err) {
     res.status(500).json({ error: "Failed to read data" });
   }
@@ -18,23 +18,25 @@ export async function getAllPosts(req, res) {
 // GET /posts/id/:id - Get posts by id
 export async function getPostById(req, res) {
   const id = req.params.id;
+  
   try {
     const filtered = await readItemsFromFile(filePath, { id });
-    res.json(filtered);
+    res.status(200).res.json(filtered);
   } catch (err) {
-    res.status(500).json({ error: "Failed to read data" });
+        res.status(500).json({ error: "Failed to read data" });
   }
 }
 
 // POST /posts - Post a post
 export async function addPost(req, res) {
   const newPost = req.body;
+  
   try {
     const result = await writeItemToFile(filePath, newPost);
     if (!result.success) throw new Error(result.error);
-    res.status(201).json(result.data);
+        res.status(201).json(result.data);
   } catch (err) {
-    res.status(500).json({ error: "Failed to save data" });
+        res.status(500).json({ error: "Failed to save data" });
   }
 }
 
@@ -46,9 +48,9 @@ export async function updatePost(req, res) {
   try {
     const result = await updateItemById(filePath, id, newPost);
     if (!result.success) throw new Error(result.error);
-    res.json(result.updated);
+        res.status(200).res.json(result.updated);
   } catch (err) {
-    res.status(500).json({ error: "Failed to update data" });
+        res.status(500).json({ error: "Failed to update data" });
   }
 }
 
@@ -59,8 +61,8 @@ export async function deletePost(req, res) {
   try {
     const result = await deleteItemById(filePath, id);
     if (!result.success) throw new Error(result.error);
-    res.json(result.updatedList);
+        res.json(result.updatedList);
   } catch (err) {
-    res.status(500).json({ error: "Failed to delete data" });
+        res.status(500).json({ error: "Failed to delete data" });
   }
 }

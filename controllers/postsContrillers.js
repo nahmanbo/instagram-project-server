@@ -9,21 +9,23 @@ const fileName = "posts.json";
 export async function getAllPosts(req, res) {
   try {
     const posts = await readItemsFromFile(fileName);
-    res.status(200).res.json(posts);
+    res.status(200).json(posts);
   } catch (err) {
-    res.status(500).json({ error: "Failed to read data" });
+      res.status(500).json({ error: "Failed to read data" });
   }
 }
 
 // GET /posts/id/:id - Get posts by id
 export async function getPostById(req, res) {
-  const id = req.params.id;
-  
+  const id = Number(req.params.id);
+  console.log("id2 ", id)
+
+
   try {
-    const filtered = await readItemsFromFile(fileName, { id });
-    res.status(200).res.json(filtered);
+    const filtered = await readItemsFromFile(fileName, id);
+    res.status(200).json(filtered);
   } catch (err) {
-        res.status(500).json({ error: "Failed to read data" });
+      res.status(500).json({ error: "Failed to read data" });
   }
 }
 
@@ -33,10 +35,9 @@ export async function addPost(req, res) {
   
   try {
     const result = await writeItemToFile(fileName, newPost);
-    if (!result.success) throw new Error(result.error);
-        res.status(201).json(result.data);
+    res.status(201).json(result.data);
   } catch (err) {
-        res.status(500).json({ error: "Failed to save data" });
+      res.status(500).json({ error: "Failed to save data" });
   }
 }
 
@@ -47,22 +48,21 @@ export async function updatePost(req, res) {
 
   try {
     const result = await updateItemById(fileName, id, newPost);
-    if (!result.success) throw new Error(result.error);
-        res.status(200).res.json(result.updated);
+    res.status(200).json(result.updated);
   } catch (err) {
-        res.status(500).json({ error: "Failed to update data" });
+      res.status(500).json({ error: "Failed to update data" });
   }
 }
 
 // DELETE /posts/:id - Delete post by id
 export async function deletePost(req, res) {
   const id = Number(req.params.id);
+  console.log("id3 ", id)
 
   try {
     const result = await deleteItemById(fileName, id);
-    if (!result.success) throw new Error(result.error);
-        res.json(result.updatedList);
+    res.json(result.updatedList);
   } catch (err) {
-        res.status(500).json({ error: "Failed to delete data" });
+      res.status(500).json({ error: "Failed to delete data" });
   }
 }

@@ -12,10 +12,8 @@ app.use(express.json());
 app.use(cors()); 
 app.use(logger);
 
-
 // Routes
 app.use("/api/posts", postRouter);
-
 
 // Start Server
 app.listen(PORT, () => {

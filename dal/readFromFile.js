@@ -1,20 +1,22 @@
 import { readFile } from "node:fs/promises";
 
 // Read all items from file (with optional filter)
-export default async function readItemsFromFile(filePath, filterObj = null) {
+export default async function readItemsFromFile(fileName, id = null) {
+  const filePath = `./lib/${fileName}`
+  console.log("id ", id)
+
   try {
     const fileData = await readFile(filePath, "utf8");
     const arr = JSON.parse(fileData);
 
-    if (filterObj) {
-      const key = Object.keys(filterObj)[0];
-      const value = filterObj[key];
-      return arr.filter(obj => obj[key] === value);
+    if (id) {
+      console.log("id ", id)
+      return arr.filter(obj => obj.id === id);;
     }
 
     return arr;
   } catch (err) {
-    console.error("Error reading file:", err.message);
-    return [];
+      console.error("Error reading file:", err.message);
+      return [];
   }
 }

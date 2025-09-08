@@ -1,19 +1,17 @@
 import { readFile, writeFile } from "node:fs/promises";
 
-
 // Delete item by ID
 export default async function deleteItemById(fileName, id) {
-  const filePath = `../lib/${fileName}`
+  const filePath = `./lib/${fileName}`
   try {
     const fileData = await readFile(filePath, "utf8");
     const arr = JSON.parse(fileData);
-
     const newArr = arr.filter(obj => obj.id !== id);
     await writeFile(filePath, JSON.stringify(newArr, null, 2));
 
     return { success: true, updatedList: newArr };
   } catch (err) {
-    console.error("Error deleting item:", err.message);
-    return { success: false, error: err.message };
+      console.error("Error deleting item:", err.message);
+      return { success: false, error: err.message };
   }
 }

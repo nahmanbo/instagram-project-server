@@ -7,8 +7,6 @@ import {
   deletePost
 } from "../controllers/postsContrillers.js";
 
-
-
 const router = Router();
 
 // Get all posts

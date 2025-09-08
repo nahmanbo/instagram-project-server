@@ -1,12 +1,14 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 // Update item by ID
-export default async function updateItemById(filePath, idFromParams, newObj) {
+export default async function updateItemById(fileName, idFromParams, newObj) {
+  const filePath = `./lib/${fileName}`
+
   try {
     if (idFromParams !== newObj.id) {
       return { success: false, error: "ID mismatch" };
     }
-
+    
     const fileData = await readFile(filePath, "utf8");
     const arr = JSON.parse(fileData);
 
@@ -20,7 +22,7 @@ export default async function updateItemById(filePath, idFromParams, newObj) {
 
     return { success: true, updated: newObj };
   } catch (err) {
-    console.error("Error updating item:", err.message);
-    return { success: false, error: err.message };
+      console.error("Error updating item:", err.message);
+      return { success: false, error: err.message };
   }
 }

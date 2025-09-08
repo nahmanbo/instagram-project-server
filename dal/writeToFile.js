@@ -1,7 +1,9 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 // Write new item and write to file
-export default async function writeItemToFile(filePath, newItem) {
+export default async function writeItemToFile(fileName, newItem) {
+  const filePath = `./lib/${fileName}`
+
   try {
     const data = await readFile(filePath, "utf8");
     const arr = JSON.parse(data);
@@ -10,7 +12,7 @@ export default async function writeItemToFile(filePath, newItem) {
 
     return { success: true, data: newItem };
   } catch (err) {
-    console.error("Error creating data:", err.message);
-    return { success: false, error: err.message };
+      console.error("Error creating data:", err.message);
+      return { success: false, error: err.message };
   }
 }

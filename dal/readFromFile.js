@@ -12,8 +12,7 @@ export default async function readItemsFromFile(fileName, id = null) {
       const item = arr.filter(obj => obj.id === id);
       if (item.length > 0){
         return item;
-      }
-    }
+      }}
 
     return arr;
   } catch (err) {

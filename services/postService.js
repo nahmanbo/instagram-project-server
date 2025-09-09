@@ -6,60 +6,26 @@ import deleteItemById  from "../dal/deleteFromFile.js";
 const fileName = "posts.json";
 
 // GET /posts - Get all posts
-export async function getAllPosts(req, res) {
-  try {
-    const posts = await readItemsFromFile(fileName);
-    res.status(200).json(posts);
-  } catch (err) {
-      res.status(500).json({ error: "Failed to read data" });
-  }
+export async function getAllPosts() {
+    return await readItemsFromFile(fileName);
 }
 
 // GET /posts/id/:id - Get posts by id
-export async function getPostById(req, res) {
-  const id = Number(req.params.id);
-
-  try {
-    const filtered = await readItemsFromFile(fileName, id);
-    res.status(200).json(filtered);
-  } catch (err) {
-      res.status(500).json({ error: "Failed to read data" });
-  }
+export async function getPostById(id) {
+  return await readItemsFromFile(fileName,id);
 }
 
 // POST /posts - Post a post
-export async function addPost(req, res) {
-  const newPost = req.body;
-  
-  try {
-    const result = await writeItemToFile(fileName, newPost);
-    res.status(201).json(result.data);
-  } catch (err) {
-      res.status(500).json({ error: "Failed to save data" });
-  }
+export async function addPost(newPost) {
+  return await writeItemToFile(fileName, newPost)
 }
 
 // PUT /posts/:id - Edit post
-export async function updatePost(req, res) {
-  const id = Number(req.params.id);
-  const newPost = req.body;
-
-  try {
-    const result = await updateItemById(fileName, id, newPost);
-    res.status(200).json(result.updated);
-  } catch (err) {
-      res.status(500).json({ error: "Failed to update data" });
-  }
+export async function updatePost(id, newPost) {
+  return await updateItemById(fileName, id, newPost);
 }
 
 // DELETE /posts/:id - Delete post by id
-export async function deletePostId(req, res) {
-  const id = Number(req.params.id);
-
-  try {
-    const result = await deleteItemById(fileName, id);
-    res.json(result.updatedList);
-  } catch (err) {
-      res.status(500).json({ error: "Failed to delete data" });
-  }
+export async function deletePostId(id) {
+  return await deleteItemById(fileName, id);
 }

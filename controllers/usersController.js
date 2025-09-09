@@ -10,7 +10,7 @@ export async function getUsersNamesController(req, res) {
     }
   }
   
-  // Register a new player
+  // Register a new users
   export async function createUsersController(req, res) {
     const { name, password } = req.body;
     
@@ -18,7 +18,7 @@ export async function getUsersNamesController(req, res) {
       const user = await createUser(name, password);
       res.status(201).json(user);
     } catch (err) {
-      const code = 500;
+      let code = 500;
       if(err.message === "Missing name or password")
         code = 400;
       else if(err.message === "Username already exists")
@@ -32,9 +32,10 @@ export async function getUsersNamesController(req, res) {
     const { name, password } = req.body;
     
     try {
-      res.status(200).json({ token, player });
+      const resp = await loginUser(name, password)
+      res.status(200).json(resp);
     } catch (err) {
-      const code = 500;
+      let code = 500;
       if(err.message === "Missing name or password")
         code = 400;
       else if(err.message.includes("password") || err.message.includes("not found"))

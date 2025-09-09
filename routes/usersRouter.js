@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
     getUsersNamesController,
-    getUsersNamesController,
+    createUsersController,
     loginUserController,
 } from "../controllers/usersController.js";
 
@@ -11,7 +11,7 @@ const router = Router();
 router.get("/", getUsersNamesController);
 
 // Register new users 
-router.post("/", getUsersNamesController);
+router.post("/", createUsersController);
 
 // Login with credentials 
 router.post("/login", loginUserController);

@@ -3,7 +3,7 @@ import {
     getUsersNamesController,
     getUsersNamesController,
     loginUserController,
-} from "../controllers/playerController.js";
+} from "../controllers/usersController.js";
 
 const router = Router();
 

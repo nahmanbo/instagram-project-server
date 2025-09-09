@@ -13,7 +13,8 @@ export async function getAllPostsController(req, res) {
     res.status(200).json(posts);
   } catch (err) {
       res.status(500).json({ error: "Failed to read data" });
-  }}
+  }
+}
 
 // GET /posts/id/:id - Get posts by id
 export async function getPostByIdController(req, res) {

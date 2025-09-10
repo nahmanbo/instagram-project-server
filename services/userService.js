@@ -1,7 +1,9 @@
-import readItemsFromFile  from "../dal/readFromFile.js";
-import  writeItemToFile  from "../dal/writeToFile.js";
-import generateToken from "../utils/tokenHelper.js"
 import bcrypt from 'bcrypt';
+
+import readItemsFromFile  from "../dal/readFromFile.js";
+import writeItemToFile  from "../dal/writeToFile.js";
+import genToken from "../utils/tokenHelper.js"
+
 const fileName = "users.json";
 
 // GET /users - Get all users names
@@ -11,13 +13,14 @@ export async function getUsersNames() {
     return nameArray
 }
 
+// GET /users - Get user by name
 export async function findUserByName(name) {
     const users = await readItemsFromFile(fileName);
     const user = users.filter(user => user.name === name);
     return user;
 }
 
-// Insert a new player (shared logic for user/guest)
+// Insert a new user
 export async function createUser(name, password) {
     if (!name || !password) {
         throw new Error("Missing name or password");
@@ -30,20 +33,18 @@ export async function createUser(name, password) {
     return await writeItemToFile(fileName, newUsers)
 }
 
-// Login an existing player (verify password)
+// Login an existing user
 export async function loginUser(name, password) {
     if (!name || !password){
         throw new Error("Missing name or password");
     }
     const user = await findUserByName(name);
-    if (!user){
-        throw new Error("user not found");
-    }
+    if (!user) throw new Error("user not found");
+
     if (bcrypt.compare(password, player.passwordhash)){ 
         throw new Error("Incorrect password");
     }
-    console.log("aaaa")
-    const token = generateToken(user);
+    const token = genToken(user);
     console.log("token ", token)
     return ({ token, user })
 }

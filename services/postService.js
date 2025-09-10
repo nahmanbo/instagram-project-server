@@ -1,10 +1,10 @@
+import fs from 'fs';
 import readItemsFromFile  from "../dal/readFromFile.js";
 import  writeItemToFile  from "../dal/writeToFile.js";
 import  updateItemById  from "../dal/updateInFile.js";
 import deleteItemById  from "../dal/deleteFromFile.js";
 import generateTime from "../utils/timeHelper.js"
 import genNextPostId from "../utils/idHelper.js"
-
 
 const fileName = "posts.json";
 
@@ -41,8 +41,8 @@ export async function deletePostId(id) {
 }
 
 export async function getAllImgNames() {
-  const folderPath = '../assets'; 
-  const filenames = fs.readdirSync(folderPath);
+  const folderPath = 'assets/images'; 
+  const filenames = await fs.readdirSync(folderPath);
   console.log('Files in folder:', filenames);
   return filenames;
 }

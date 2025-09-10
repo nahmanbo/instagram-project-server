@@ -42,7 +42,6 @@ export async function deletePostId(id) {
 
 export async function getAllImgNames() {
   const folderPath = 'assets/images'; 
-  const filenames = await fs.readdirSync(folderPath);
-  console.log('Files in folder:', filenames);
+  const filenames = fs.readdirSync(folderPath);
   return filenames;
 }

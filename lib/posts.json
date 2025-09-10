@@ -68,5 +68,12 @@
     "img": "img10.jpeg",
     "description": "I don't know what to write but here's a beautiful picture related to high tech...",
     "dateISO": "20225-09-07T18:00:00"
+  },
+  {
+    "id": 11,
+    "name": "nahman b o",
+    "img": "img11.jpeg",
+    "description": "Post insertion test",
+    "time": "2025-09-10 16:29"
   }
 ]

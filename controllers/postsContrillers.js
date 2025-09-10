@@ -64,12 +64,10 @@ export async function deletePostController(req, res) {
 }
 
 export async function getAllImgNameController(req, res) {
-  console.log("dshys")
-
   try {
-    const img = getAllImgNames();
-    res.status(200).text(img);
+    const img = await getAllImgNames();
+    res.status(200).send(img);
   } catch (err) {
-      res.status(500).json({ error: "Failed to img name" });
+      res.status(500).json({ error: "Failed to read img name" });
   }
 }

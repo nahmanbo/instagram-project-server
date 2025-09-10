@@ -2,6 +2,9 @@ import readItemsFromFile  from "../dal/readFromFile.js";
 import  writeItemToFile  from "../dal/writeToFile.js";
 import  updateItemById  from "../dal/updateInFile.js";
 import deleteItemById  from "../dal/deleteFromFile.js";
+import generateTime from "../utils/timeHelper.js"
+import genNextPostId from "../utils/idHelper.js"
+
 
 const fileName = "posts.json";
 
@@ -17,7 +20,14 @@ export async function getPostById(id) {
 
 // POST /posts - Post a post
 export async function addPost(newPost) {
-  return await writeItemToFile(fileName, newPost)
+   const id = await genNextPostId();
+  const name = newPost.name;
+  const img = newPost.img;
+  const description = newPost.description;
+  const time = generateTime()
+  const post = {id, name, img, description, time};
+
+  return await writeItemToFile(fileName, post)
 }
 
 // PUT /posts/:id - Edit post

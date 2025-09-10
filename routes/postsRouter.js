@@ -4,10 +4,14 @@ import {
   getPostByIdController,
   addPostController,
   updatePostController,
-  deletePostController
+  deletePostController,
+  getAllImgNameController
 } from "../controllers/postsContrillers.js";
 
 const router = Router();
+
+// Get all img file name
+router.get("/img", getAllImgNameController);
 
 // Get all posts
 router.get("/", getAllPostsController);

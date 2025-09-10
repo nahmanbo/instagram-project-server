@@ -1,9 +1,10 @@
 import {
+  getAllImgNames,
   getAllPosts,
   getPostById,
   addPost,
   updatePost,
-  deletePostId
+  deletePostId,
 } from "../services/postService.js"
 
 // GET /posts - Get all posts 
@@ -59,5 +60,16 @@ export async function deletePostController(req, res) {
     res.json(result.updatedList);
   } catch (err) {
       res.status(500).json({ error: "Failed to delete data" });
+  }
+}
+
+export async function getAllImgNameController(req, res) {
+  console.log("dshys")
+
+  try {
+    const img = getAllImgNames();
+    res.status(200).text(img);
+  } catch (err) {
+      res.status(500).json({ error: "Failed to img name" });
   }
 }

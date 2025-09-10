@@ -1,4 +1,4 @@
-import {getUsersNames, createUser, loginUser} from "../services/userService.js"
+import {getUsersNames, findUserByName, createUser, loginUser} from "../services/userService.js"
 
 // Get all users names
 export async function getUsersNamesController(req, res) {
@@ -9,6 +9,17 @@ export async function getUsersNamesController(req, res) {
         res.status(500).json({ error: err.message })
     }
   }
+
+// Get users by name
+export async function getUserByNameController(req, res) {
+  const {name} = req.body;
+  try {
+      const user = await findUserByName(name);
+      res.status(200).json(user);
+  } catch (err) {
+      res.status(500).json({ error: err.message })
+  }
+}
   
   // Register a new users
   export async function createUsersController(req, res) {

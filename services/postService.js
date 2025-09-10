@@ -39,3 +39,10 @@ export async function updatePost(id, newPost) {
 export async function deletePostId(id) {
   return await deleteItemById(fileName, id);
 }
+
+export async function getAllImgNames() {
+  const folderPath = '../assets'; 
+  const filenames = fs.readdirSync(folderPath);
+  console.log('Files in folder:', filenames);
+  return filenames;
+}

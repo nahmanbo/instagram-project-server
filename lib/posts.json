@@ -60,14 +60,14 @@
     "name": "nahman b o",
     "img": "img9.jpeg",
     "description": "I don't know what to write but here's a beautiful picture related to high tech...",
-    "dateISO": "20225-09-07T18:00:00"
+    "time": "2025-09-10 16:29"
   },
   {
     "id": 10,
     "name": "nahman b o",
     "img": "img10.jpeg",
     "description": "I don't know what to write but here's a beautiful picture related to high tech...",
-    "dateISO": "20225-09-07T18:00:00"
+    "time": "2025-09-10 16:29"
   },
   {
     "id": 11,
@@ -75,5 +75,12 @@
     "img": "img11.jpeg",
     "description": "Post insertion test",
     "time": "2025-09-10 16:29"
+  },
+  {
+    "id": 12,
+    "name": "natan",
+    "img": "img12.jpeg",
+    "description": "check natan ",
+    "time": "2025-09-10 17:42"
   }
 ]

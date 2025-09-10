@@ -24,9 +24,9 @@ export async function getUserByNameController(req, res) {
   // Register a new users
   export async function createUsersController(req, res) {
     const { name, password } = req.body;
-    
     try {
       const user = await createUser(name, password);
+      console.log(".json(user) ", user)
       res.status(201).json(user);
     } catch (err) {
       let code = 500;

@@ -26,8 +26,9 @@ export async function createUser(name, password) {
         throw new Error("Missing name or password");
     }
     let existing = await findUserByName(name);
-    if (existing) throw new Error("Username already exists");
-  
+    if (existing==[]){
+        throw new Error("Username already exists");
+    } 
     let passwordhash = await bcrypt.hash(password, 10);
     let newUsers = {name, passwordhash}
     return await writeItemToFile(fileName, newUsers)
